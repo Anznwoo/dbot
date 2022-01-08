@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import os
 
-client = commands.Bot(command_prefix = '-')
+client = commands.Bot(command_prefix = '!')
 
 @client.event
 async def on_ready():
@@ -21,23 +21,18 @@ async def on_message(message):
     # SENDER가 BOT일 경우 반응을 하지 않도록 한다.
     if message.author.bot:
         return None
-        
-    # message.content = message의 내용
-    if message.content == "!바보":
-        # 현재 채널을 받아옴
-        channel = message.channel
-        # 답변 내용 구성
-        msg = "너도 바보"
-        # msg에 지정된 내용대로 메시지를 전송
-        await channel.send(msg)
-        return None
 
-    if message.content == "날 태그해 줘":
-        channel = message.channel
+    if message.content == "태그미":
+        # channel = message.channel
 
         msg = "<@{}>".format(message.author.id)
-        await channel.send(msg)
+        await client.send_message(message.channel,msg)
+        # await channel.send(msg)
         return None
+
+@client.command()
+async def 안녕(ctx):
+    await ctx.send('반갑습니다')
 
 
 client.run(os.environ['token'])
