@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import os
 
-client = commands.Bot()
+client = commands.Bot(command_prefix = '!')
 
 @client.event
 async def on_ready():
@@ -21,9 +21,6 @@ async def on_message(message):
     # SENDER가 BOT일 경우 반응을 하지 않도록 한다.
     if message.author.bot:
         return None
-
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
 
     if message.content == "태그미":
         # channel = message.channel
