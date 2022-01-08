@@ -17,9 +17,10 @@ async def on_ready():
   
     print("봇 이름:",client.user.name,"봇 아이디:",client.user.id,"봇 버전:",discord.__version__)
 
+@client.event
 async def on_message(message):
     # SENDER가 BOT일 경우 반응을 하지 않도록 한다.
-    if message.author.bot:
+    if message.author == client.user:
         return None
 
     if message.content == "태그미":
