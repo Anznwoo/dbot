@@ -17,5 +17,20 @@ async def on_ready():
   
   print("봇 이름:",client.user.name,"봇 아이디:",client.user.id,"봇 버전:",discord.__version__)
 
+async def on_message(message):
+    # SENDER가 BOT일 경우 반응을 하지 않도록 한다.
+    if message.author.bot:
+        return None
+        
+    # message.content = message의 내용
+    if message.content == "!바보":
+        # 현재 채널을 받아옴
+        channel = message.channel
+        # 답변 내용 구성
+        msg = "너도 바보"
+        # msg에 지정된 내용대로 메시지를 전송
+        await channel.send(msg)
+        return None
+
 
 client.run(os.environ['token'])
